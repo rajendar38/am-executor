@@ -3,6 +3,7 @@ deployment:
     tag: /v[0-9]+(\.[0-9]+)*/
     commands:
       - mkdir bin
+      - dep ensure
       - go build -o bin/$CIRCLE_PROJECT_REPONAME
       - tar czf $CIRCLE_ARTIFACTS/$CIRCLE_PROJECT_REPONAME-$CIRCLE_TAG.linux-amd64.tar.gz bin/$CIRCLE_PROJECT_REPONAME
       - gem install fpm
