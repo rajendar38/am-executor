@@ -10,10 +10,14 @@ COPY .  .
 ENV CGO_ENABLED=0
 RUN go build . && go install
 
-FROM alpine:3.6
-RUN apk add --update ca-certificates && adduser -D user
-USER user
+FROM debian
+RUN apt-get update \
+&& apt-get install -yq --no-install-recommends \
+       ca-certificates \
+       curl
+ENV CLUSTER_NAME default
 COPY --from=0 /go/bin/prometheus-am-executor /bin
-
+COPY start1.sh /usr/start.sh
+RUN chmod 700 /usr/start.sh
 EXPOSE 8080
-ENTRYPOINT [ "/bin/prometheus-am-executor" ]
+CMD [ "/bin/prometheus-am-executor" , "./usr/start.sh"]
