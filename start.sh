@@ -10,7 +10,7 @@ echo "start execution started"
 if [[ "$AMX_LABEL_alertname" == "example-alert" ]];
 then
   #write your code here. ie: You need to delete some files to clear disk space or restart the instance
-   echo "in if condition *************************"
+   echo "in if condition *************************"$AMX_LABEL_alertname 
 	
 else
 	echo "Label is different, ${AMX_LABEL_alertname}" >> executor.log

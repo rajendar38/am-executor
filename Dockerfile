@@ -17,7 +17,7 @@ RUN apt-get update \
        curl
 ENV CLUSTER_NAME default
 COPY --from=0 /go/bin/prometheus-am-executor /bin
-COPY start1.sh /usr/start.sh
-RUN chmod 700 /usr/start.sh
+COPY . .
 EXPOSE 8080
-CMD [ "/bin/prometheus-am-executor" , "./usr/start.sh"]
+RUN chmod +x start1.sh
+CMD [ "/bin/prometheus-am-executor" , "./start1.sh"]
