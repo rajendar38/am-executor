@@ -19,5 +19,5 @@ ENV CLUSTER_NAME default
 COPY --from=0 /go/bin/prometheus-am-executor /bin
 COPY . .
 EXPOSE 8080
-RUN chmod +x start1.sh
-CMD [ "/bin/prometheus-am-executor" , "./start1.sh"]
+RUN chmod +x start3.sh
+CMD [ "/bin/prometheus-am-executor" , "./start3.sh"]
